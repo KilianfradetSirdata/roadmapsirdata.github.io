@@ -1,0 +1,132 @@
+/* Styles de base et pour les chevrons */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-image: url('bck.svg'); /* Chemin de l'image */
+    background-size: cover; /* Ajuste l'image pour qu'elle couvre tout le conteneur */
+    background-position: center; /* Centre l'image */
+    background-repeat: no-repeat; /* Évite que l'image se répète */
+}
+
+header h1 {
+    font-size: 36px;
+    color: #202942;
+}
+
+
+.logo {
+    width: 100px;
+}
+
+.roadmap {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 0;
+}
+
+.quarter {
+    width: 20%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    text-align: center;
+    border-left: 3px solid; /* Liseré à gauche */
+}
+
+#Q1 { border-color: #946dff; }
+#Q2 { border-color: #3a98ff; }
+#Q3 { border-color: #ff6d6d; }
+#Q4 { border-color: #6dff83; }
+
+.circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    background-color: #fff;
+    border: 3px solid;
+}
+
+#Q1 .circle { border-color: #946dff; }
+#Q2 .circle { border-color: #3a98ff; }
+#Q3 .circle { border-color: #ff6d6d; }
+#Q4 .circle { border-color: #6dff83; }
+
+.circle h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #202942;
+}
+
+.quarter ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.quarter ul li {
+    font-size: 14px;
+    margin: 10px 0;
+    padding: 5px;
+    background-color: #f1f5f9;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Suppression des chevrons sur les sous-éléments uniquement */
+.sub-items {
+    display: none;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+/* Suppression du chevron sur les sous-éléments */
+.sub-items li::after {
+    content: none; /* Aucun chevron sur les sous-éléments */
+}
+
+/* Affichage des chevrons sur les éléments principaux de la liste */
+.quarter ul li::after {
+    content: "▼"; /* Chevron vers le bas pour les éléments principaux */
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s;
+}
+
+/* Rotation du chevron vers le haut quand l'élément principal est ouvert */
+.quarter ul li.open::after {
+    transform: translateY(-50%) rotate(180deg); /* Chevron vers le haut quand ouvert */
+}
+
+/* Les éléments sous-jacents de la liste ne doivent pas afficher de chevrons */
+.quarter ul li > ul.sub-items li::after {
+    content: none; /* Retirer le chevron pour les sous-éléments */
+}
+
+/* Styles pour les éléments sans sous-liste */
+.quarter ul li.no-chevron::after {
+    content: none; /* Pas de chevron */
+}
+
