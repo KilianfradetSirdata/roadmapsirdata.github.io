@@ -1,0 +1,235 @@
+/* Styles de base et pour les chevrons */
+html, body {
+    height: 100%; /* S'assurer que le html et le body occupent toute la hauteur */
+    margin: 0;    /* Supprimer les marges par défaut */
+    padding: 0;   /* Supprimer les padding par défaut */
+    display: flex;
+    flex-direction: column; /* Disposer les enfants en colonne */
+    background-color: #f5f7fa; /* Appliquer la couleur de fond */
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #002738;
+    color: #ffffff;
+    background-image: url('images/Fond bleu.svg'); /* Chemin de l'image */
+    background-size: cover; /* Ajuste l'image pour qu'elle couvre tout le conteneur */
+    background-position: center; /* Centre l'image */
+    background-repeat: no-repeat; /* Évite que l'image se répète */
+
+}
+
+header {
+    text-align: left;
+    align-items: center;
+    display: flex;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-size: cover; /* Ajuste l'image pour qu'elle couvre tout le conteneur */
+    background-position: center; /* Centre l'image */
+    background-repeat: no-repeat; /* Évite que l'image se répète */
+}
+
+header h1 {
+    font-size: 36px;
+    color: transparent; /* Masque la couleur de texte par défaut */
+    background: linear-gradient(to left, #82F4AF, #ffffff); /* Dégradé de droite à gauche */
+    -webkit-background-clip: text; /* Affiche le dégradé uniquement sur le texte (pour Chrome, Safari) */
+    background-clip: text; /* Support pour Firefox */
+    margin-left: 10px;
+}
+
+
+.logo {
+    width: 60px;
+    margin-left: 10px;
+}
+
+.roadmap {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 0px;
+}
+
+.quarter {
+    width: 20%;
+    background-color: rgba(1, 1, 1, 0.25); /* Noir avec 25% de transparence */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    text-align: center;
+    border-bottom: 3px solid; /* Liseré en bas */
+}
+
+.quarter::before {
+    content: "";
+    position: absolute;
+    top: -14px;                               /* Positionne le triangle au-dessus de la box */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;      /* Triangle avec bords transparents */
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid rgba(1, 1, 1, 0.25);        /* Couleur du triangle identique à celle de la box */
+}
+
+#Q1 { border-color: #82F4AF; }
+#Q2 { border-color: #82F4AF; }
+#Q3 { border-color: #82F4AF; }
+#Q4 { border-color: #82F4AF; }
+
+.circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    border: 3px solid;
+}
+
+#Q1 .circle { border-color: #82F4AF; }
+#Q2 .circle { border-color: #82F4AF; }
+#Q3 .circle { border-color: #82F4AF; }
+#Q4 .circle { border-color: #82F4AF; }
+
+.circle h2 {
+    margin: 0;
+    font-size: 36px;
+    color: #82F4AF;
+}
+
+.quarter ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.quarter ul li {
+    font-size: 14px;
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    font-weight: bold; /* Met les éléments principaux en gras */
+    overflow: hidden; /* Empêche le dépassement du contenu avant ajustement */
+    height: auto; /* Par défaut, chaque `quarter` ajuste sa hauteur à son contenu */
+}
+
+/* Suppression des chevrons sur les sous-éléments uniquement */
+.sub-items {
+    background-color: transparent; /* Pas de couleur de fond pour les sous-éléments */
+    list-style-type: disc;
+    overflow: hidden; /* Cache le contenu avant l'animation */
+    max-height: 0; /* Hauteur initiale fermée */
+    transition: max-height 0.3s ease; /* Transition fluide de la hauteur */
+}
+
+/* Suppression du chevron sur les sous-éléments */
+.sub-items li::after {
+    content: none; /* Aucun chevron sur les sous-éléments */
+}
+
+.quarter ul li.open .sub-items {
+    display: block;
+    max-height: 500px; /* Hauteur maximale suffisante pour afficher le contenu */
+}
+
+/* Affichage des chevrons sur les éléments principaux de la liste */
+.quarter ul li::after {
+    content: "🔻"; /* Chevron vers le bas pour les éléments principaux */
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.5s;
+}
+
+/* Rotation du chevron vers le haut quand l'élément principal est ouvert */
+.quarter ul li.open::after {
+    transform: translateY(-50%) rotate(180deg); /* Chevron vers le haut quand ouvert */
+}
+
+/* Les éléments sous-jacents de la liste ne doivent pas afficher de chevrons */
+.quarter ul li > ul.sub-items li::after {
+    content: none; /* Retirer le chevron pour les sous-éléments */
+}
+
+/* Styles pour les éléments sans sous-liste */
+.quarter ul li.no-chevron::after {
+    content: none; /* Pas de chevron */
+}
+
+/* Ajout d'un style pour les trimestres pour les aligner avec les mois */
+.roadmap {
+    display: flex;
+    justify-content: space-around; /* Aligne les sections Q1, Q2, Q3, Q4 horizontalement */
+    padding: 20px 0;
+    position: relative;
+}
+
+/* Garder les sous-éléments en texte normal */
+.quarter ul li .sub-items li {
+    font-weight: normal; /* Texte normal pour les sous-éléments */
+}
+
+/* Conteneur de la ligne de timeline */
+.timeline {
+    display: flex;                          /* Aligne les puces horizontalement */
+    justify-content: space-around;          /* Distribue l'espace entre les puces */
+    align-items: center;                    /* Centre verticalement les puces */
+    position: relative;
+    margin-top: 15px;                    /* Espacement sous la ligne */
+    height: 30px;                           /* Hauteur de la section pour les puces */
+}
+
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0%;; /* Départ à gauche */
+    width: calc(100% - 0px); /* Ajuste la largeur pour laisser de la place pour la flèche */
+    height: 18px;
+    background-image: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.5) 50%, 
+        rgba(255, 255, 255, 1) 100%
+    );
+    z-index: 0;
+    transform: translateY(-50%); /* Centrer verticalement */
+}
+
+
+.dot {
+    width: 15px;                            /* Taille des puces */
+    height: 15px;
+    border-radius: 50%;
+    background-color: #82F4AF;              /* Couleur des puces */
+    z-index: 1;                             /* Affiche les puces au-dessus de la ligne */
+}
+
+/* Appliquer l'effet uniquement sur les items qui ont des sous-items */
+.quarter ul li:hover:not(.no-chevron) {
+    transform: scale(1.05); /* Augmente légèrement la taille */
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Animation fluide */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optionnel : ajoute une ombre légère */
+}
+
+/* Remettre l'élément à sa taille normale lorsqu'on quitte le hover */
+.quarter ul li:not(.no-chevron) {
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Transition fluide */
+}
+
