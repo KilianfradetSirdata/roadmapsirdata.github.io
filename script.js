@@ -18,14 +18,17 @@ document.querySelectorAll('.quarter ul li').forEach(item => {
         // Toggle la classe 'open' pour gérer la rotation du chevron
         this.classList.toggle('open');
         
-        // Affiche ou masque les sous-éléments
+        // Affiche ou masque les sous-éléments avec une animation fluide
         const subItems = this.querySelector('.sub-items');
         if (subItems) {
-            if (subItems.style.display === 'block') {
-                subItems.style.display = 'none';
+            if (subItems.style.maxHeight) {
+                // Si l'élément est ouvert, on le ferme
+                subItems.style.maxHeight = null;
             } else {
-                subItems.style.display = 'block';
+                // Sinon, on définit une hauteur pour l'ouvrir
+                subItems.style.maxHeight = subItems.scrollHeight + "px";
             }
         }
     });
 });
+
